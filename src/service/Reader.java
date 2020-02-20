@@ -17,6 +17,12 @@ public class Reader {
     private static File TEMP_FILE;
     private static final String SUFFIX_TEMP = ".xml";
     private static final String MATCHES_REG_FOR_ZIP = ".+\\.fb2\\.zip$";
+
+    /**
+     * @param file путь к файлу с форматом fb2: .fb2 или .fb2.zip.
+     * @param authorBookList реформированный TreeMap куда записываются данные книги
+     */
+
     public static void parse(File file, AuthorBookList authorBookList) throws IOException, SAXException, ParserConfigurationException {
         //Проверка на zip
         if(file.getName().matches(MATCHES_REG_FOR_ZIP)){
@@ -36,6 +42,10 @@ public class Reader {
             TEMP_FILE.deleteOnExit();
         }
     }
+
+    /**
+     * @param file путь файла с форматом zip
+     */
     private static void zip(File file) throws IOException {
         //Распаковка zip файла
         ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(file));
